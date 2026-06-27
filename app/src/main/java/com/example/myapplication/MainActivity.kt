@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.instruments.*
@@ -8,20 +7,21 @@ import com.example.myapplication.sensors.FlightSensorManager
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var sensorManager: FlightSensorManager
+    private lateinit var sensorManager: FlightSensorManager
 
-    lateinit var airspeed: AirspeedView
-    lateinit var horizon: AttitudeView
-    lateinit var altimeter: AltimeterView
-    lateinit var heading: HeadingView
-    lateinit var vsi: VerticalSpeedView
-    lateinit var turn: TurnCoordinatorView
+    private lateinit var airspeed: AirspeedView
+    private lateinit var horizon: AttitudeView
+    private lateinit var altimeter: AltimeterView
+    private lateinit var heading: HeadingView
+    private lateinit var vsi: VerticalSpeedView
+    private lateinit var turn: TurnCoordinatorView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // связываем приборы с layout
         airspeed = findViewById(R.id.airspeed)
         horizon = findViewById(R.id.horizon)
         altimeter = findViewById(R.id.altimeter)
@@ -29,22 +29,48 @@ class MainActivity : AppCompatActivity() {
         vsi = findViewById(R.id.vsi)
         turn = findViewById(R.id.turn)
 
+        // менеджер датчиков
         sensorManager = FlightSensorManager(this)
 
+        // слушатель данных сенсоров
         sensorManager.listener = { pitch, roll, azimuth ->
 
+            // авиагоризонт
             horizon.pitch = pitch
             horizon.roll = roll
+
+            // курс
             heading.heading = azimuth
 
+            // индикатор разворота (простая имитация)
+            turn.turnRate = roll
+
+            // имитация вертикальной скорости
+            vsi.verticalSpeed = pitch * 2f
+
+            // пример скорости
+            airspeed.speed = 120f
+
+            // пример высоты
+            altimeter.altitude = 1500f
+
+            // обновление приборов
             horizon.invalidate()
             heading.invalidate()
+            turn.invalidate()
+            vsi.invalidate()
+            airspeed.invalidate()
+            altimeter.invalidate()
         }
+    }
 
-        sensorManager.sensorManager.registerListener(
-            sensorManager,
-            sensorManager.rotationSensor,
-            SensorManager.SENSOR_DELAY_GAME
-        )
+    override fun onResume() {
+        super.onResume()
+        sensorManager.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.stop()
     }
 }

@@ -14,12 +14,18 @@ abstract class BaseInstrumentView(
 
     protected val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    // Овал приборной шкалы (добавлено)
+    protected val oval = RectF()
+
     override fun onDraw(canvas: Canvas) {
 
         val size = min(width, height).toFloat()
 
         drawCase(canvas, size)
         drawDial(canvas, size)
+
+        // обновляем овал для круговой шкалы (добавлено)
+        setupOval(size)
 
         drawInstrument(canvas, size)
     }
@@ -34,8 +40,8 @@ abstract class BaseInstrumentView(
             0f,
             size,
             size,
-            size*0.08f,
-            size*0.08f,
+            size * 0.08f,
+            size * 0.08f,
             paint
         )
     }
@@ -45,10 +51,24 @@ abstract class BaseInstrumentView(
         paint.color = InstrumentStyle.dialColor
 
         canvas.drawCircle(
-            size/2,
-            size/2,
-            size*0.42f,
+            size / 2,
+            size / 2,
+            size * 0.42f,
             paint
+        )
+    }
+
+    // метод, которого не хватало
+    protected fun setupOval(size: Float) {
+        val radius = size * 0.42f
+        val cx = size / 2
+        val cy = size / 2
+
+        oval.set(
+            cx - radius,
+            cy - radius,
+            cx + radius,
+            cy + radius
         )
     }
 
