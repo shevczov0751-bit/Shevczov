@@ -16,12 +16,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vsi: VerticalSpeedView
     private lateinit var turn: TurnCoordinatorView
 
+    // offsets для калибровки
+    private var pitchOffset = 0f
+    private var rollOffset = 0f
+    private var calibrated = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // связываем приборы с layout
+        // связываем приборы
         airspeed = findViewById(R.id.airspeed)
         horizon = findViewById(R.id.horizon)
         altimeter = findViewById(R.id.altimeter)
@@ -32,29 +37,38 @@ class MainActivity : AppCompatActivity() {
         // менеджер датчиков
         sensorManager = FlightSensorManager(this)
 
-        // слушатель данных сенсоров
+        // обработка сенсоров
         sensorManager.listener = { pitch, roll, azimuth ->
 
+            // первая позиция считается нулевой
+            if (!calibrated) {
+                pitchOffset = pitch
+                rollOffset = roll
+                calibrated = true
+            }
+
+            val correctedPitch = pitch - pitchOffset
+            val correctedRoll = roll - rollOffset
+
             // авиагоризонт
-            horizon.pitch = pitch
-            horizon.roll = roll
+            horizon.pitch = -correctedRoll
+            horizon.roll = correctedPitch
 
-            // курс
-            heading.heading = azimuth
+            // компас → север справа телефона
+            heading.heading = ((azimuth + 90f) % 360f + 360f) % 360f
 
-            // индикатор разворота (простая имитация)
-            turn.turnRate = roll
+            // координатор разворота
+            turn.turnRate = (-correctedPitch / 45f).coerceIn(-1f, 1f)
+            turn.slip = (correctedRoll / 45f).coerceIn(-1f, 1f)
 
-            // имитация вертикальной скорости
-            vsi.verticalSpeed = pitch * 2f
+            // вертикальная скорость (пример)
+            vsi.verticalSpeed = correctedPitch * 2f
 
-            // пример скорости
+            // тестовые данные
             airspeed.speed = 120f
-
-            // пример высоты
             altimeter.altitude = 1500f
 
-            // обновление приборов
+            // обновляем приборы
             horizon.invalidate()
             heading.invalidate()
             turn.invalidate()

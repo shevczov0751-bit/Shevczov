@@ -10,73 +10,94 @@ import com.example.myapplication.style.InstrumentStyle
 class AttitudeView(context: Context, attrs: AttributeSet?) :
     BaseInstrumentView(context, attrs) {
 
-    var pitch = 0f
-    var roll = 0f
+    // тангаж и крен в градусах
+    var pitch = 0f   // + вверх (нос вверх), - вниз
+    var roll = 0f    // + вправо, - влево
 
     override fun drawInstrument(canvas: Canvas, size: Float) {
 
         val center = size / 2f
         val radius = size * 0.45f
 
-        // === РАМКА КАК В AirspeedView ===
+        // === РАМКА ===
         paint.color = Color.WHITE
         paint.strokeWidth = size * 0.01f
         paint.style = android.graphics.Paint.Style.STROKE
-
-        // круг прибора (тот самый белый круг-рамка)
         canvas.drawCircle(center, center, radius, paint)
 
-        // === ВНУТРЕННЯЯ ЧАСТЬ АВИАГОРИЗОНТА ===
+        // === КЛИП ПО КРУГУ ===
         canvas.save()
-
-        // клип по кругу, чтобы небо/земля не выходили за рамку
         val path = Path()
         path.addCircle(center, center, radius, Path.Direction.CW)
         canvas.clipPath(path)
 
-        // поворот всего горизонта на 90° (как ты хотел)
-        canvas.rotate(90f, center, center)
+        // 1. переносим начало координат в центр прибора
+        canvas.translate(center, center)
 
-        // вращение горизонта по крену
-        canvas.rotate(-roll, center, center)
+        // 2. вращаем по крену вокруг центра
+        canvas.rotate(-roll)
 
-        // смещение по тангажу
-        canvas.translate(0f, pitch * 4f)
+        // 3. смещаем по тангажу (чувствительность можно менять)
+        val pitchOffset = pitch * (size / 60f)
+        canvas.translate(0f, pitchOffset)
 
-        // небо
+        // === НЕБО ===
         paint.style = android.graphics.Paint.Style.FILL
         paint.color = InstrumentStyle.skyColor
-        canvas.drawRect(0f, 0f, size, center, paint)
+        canvas.drawRect(-size, -size, size, 0f, paint)
 
-        // земля
+        // === ЗЕМЛЯ ===
         paint.color = InstrumentStyle.groundColor
-        canvas.drawRect(0f, center, size, size, paint)
+        canvas.drawRect(-size, 0f, size, size, paint)
 
-        // линия горизонта
+        // === ЛИНИЯ ГОРИЗОНТА ===
         paint.color = Color.WHITE
         paint.strokeWidth = size * 0.01f
-        canvas.drawLine(0f, center, size, center, paint)
+        canvas.drawLine(-size, 0f, size, 0f, paint)
 
-        // линии тангажа
+        // === ЛИНИИ ТАНГАЖА ===
         val step = size * 0.07f
         for (i in -4..4) {
             if (i == 0) continue
-
-            val y = center + i * step
-
+            val y = i * step
             val lineWidth =
                 if (i % 2 == 0) size * 0.30f
                 else size * 0.18f
 
             canvas.drawLine(
-                center - lineWidth / 2,
+                -lineWidth / 2,
                 y,
-                center + lineWidth / 2,
+                lineWidth / 2,
                 y,
                 paint
             )
         }
 
         canvas.restore()
+
+        // === СИМВОЛ САМОЛЁТА (фиксирован по центру) ===
+        paint.color = Color.WHITE
+        paint.strokeWidth = size * 0.012f
+
+        val wingSpan = radius * 0.9f
+        val fuselage = radius * 0.3f
+
+        // крыло
+        canvas.drawLine(
+            center - wingSpan / 2f,
+            center,
+            center + wingSpan / 2f,
+            center,
+            paint
+        )
+
+        // фюзеляж (короткая вертикальная линия)
+        canvas.drawLine(
+            center,
+            center - fuselage / 2f,
+            center,
+            center + fuselage / 2f,
+            paint
+        )
     }
 }
