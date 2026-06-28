@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/panel_background"
-    android:padding="28dp">
+    android:padding="24dp">
 
     <!-- TOP ROW -->
     <LinearLayout
@@ -32,7 +32,32 @@
                 <com.example.myapplication.instruments.AirspeedView
                     android:id="@+id/airspeed"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView
@@ -63,7 +88,32 @@
                 <com.example.myapplication.instruments.AttitudeView
                     android:id="@+id/horizon"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView
@@ -94,7 +144,32 @@
                 <com.example.myapplication.instruments.AltimeterView
                     android:id="@+id/altimeter"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView
@@ -135,7 +210,32 @@
                 <com.example.myapplication.instruments.TurnCoordinatorView
                     android:id="@+id/turn"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView
@@ -166,7 +266,32 @@
                 <com.example.myapplication.instruments.HeadingView
                     android:id="@+id/heading"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView
@@ -197,7 +322,32 @@
                 <com.example.myapplication.instruments.VerticalSpeedView
                     android:id="@+id/vsi"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="top|end"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|start"/>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/bolt_round"
+                    android:layout_gravity="bottom|end"/>
+
             </FrameLayout>
 
             <TextView

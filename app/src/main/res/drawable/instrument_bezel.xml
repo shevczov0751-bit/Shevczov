@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="#111111" />
+    <!-- внешняя мягкая подсветка -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#000000"/>
+            <stroke
+                android:width="4dp"
+                android:color="#202020"/>
+        </shape>
+    </item>
 
-    <stroke
-        android:width="6dp"
-        android:color="#333333" />
+    <!-- основная толстая чёрная рамка -->
+    <item
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp">
 
-    <padding
-        android:left="6dp"
-        android:top="6dp"
-        android:right="6dp"
-        android:bottom="6dp" />
+        <shape android:shape="oval">
+            <solid android:color="#000000"/>
 
-    <corners android:radius="80dp"/>
+            <stroke
+                android:width="3dp"
+                android:color="#333333"/>
 
-    <size
-        android:width="160dp"
-        android:height="160dp"/>
-</shape>
+        </shape>
+
+    </item>
+
+</layer-list>
