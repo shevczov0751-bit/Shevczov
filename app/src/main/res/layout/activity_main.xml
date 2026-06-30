@@ -1,365 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/panel_background"
-    android:padding="24dp">
+    android:fillViewport="true">
 
-    <!-- TOP ROW -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/panel_background"
+        android:padding="24dp">
 
-        <!-- AIRSPEED -->
+        <!-- TOP ROW -->
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
 
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
+            <!-- AIRSPEED -->
 
-                <com.example.myapplication.instruments.AirspeedView
-                    android:id="@+id/airspeed"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="AIRSPEED"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.AirspeedView
+                        android:id="@+id/airspeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AIRSPEED"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
+            <!-- ATTITUDE -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.AttitudeView
+                        android:id="@+id/horizon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ATTITUDE"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
+            <!-- ALTIMETER -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.AltimeterView
+                        android:id="@+id/altimeter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ALTIMETER"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!-- ATTITUDE -->
+        <!-- BOTTOM ROW -->
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
 
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
+            <!-- TURN -->
 
-                <com.example.myapplication.instruments.AttitudeView
-                    android:id="@+id/horizon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="ATTITUDE"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.TurnCoordinatorView
+                        android:id="@+id/turn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TURN"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
+            <!-- HEADING -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.HeadingView
+                        android:id="@+id/heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HEADING"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
+            <!-- VERTICAL SPEED -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/instrument_bezel"
+                    android:padding="12dp">
+
+                    <com.example.myapplication.instruments.VerticalSpeedView
+                        android:id="@+id/vsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VERTICAL SPEED"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!-- ALTIMETER -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+        <!-- MAP BUTTON -->
 
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
-
-                <com.example.myapplication.instruments.AltimeterView
-                    android:id="@+id/altimeter"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALTIMETER"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnMap"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:text="OPEN MAP"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#222222"/>
 
     </LinearLayout>
 
-    <!-- BOTTOM ROW -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <!-- TURN -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
-
-                <com.example.myapplication.instruments.TurnCoordinatorView
-                    android:id="@+id/turn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TURN"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
-        </LinearLayout>
-
-        <!-- HEADING -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
-
-                <com.example.myapplication.instruments.HeadingView
-                    android:id="@+id/heading"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HEADING"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
-        </LinearLayout>
-
-        <!-- VERTICAL SPEED -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <FrameLayout
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/instrument_bezel"
-                android:padding="12dp">
-
-                <com.example.myapplication.instruments.VerticalSpeedView
-                    android:id="@+id/vsi"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="top|end"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|start"/>
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/bolt_round"
-                    android:layout_gravity="bottom|end"/>
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VERTICAL SPEED"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:fontFamily="monospace"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
