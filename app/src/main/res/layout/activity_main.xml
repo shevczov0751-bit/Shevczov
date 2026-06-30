@@ -23,8 +23,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
@@ -79,8 +79,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
@@ -135,8 +135,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
@@ -201,8 +201,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
@@ -257,8 +257,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
@@ -313,8 +313,8 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/instrument_bezel"
                 android:padding="12dp">
