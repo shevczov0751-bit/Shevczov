@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import kotlin.math.min
 import com.example.myapplication.style.InstrumentStyle
+import com.example.myapplication.R
 
 abstract class BaseInstrumentView(
     context: Context,
@@ -14,20 +16,30 @@ abstract class BaseInstrumentView(
 
     protected val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    // Овал приборной шкалы (добавлено)
     protected val oval = RectF()
 
+    private val boltDrawable by lazy {
+        ContextCompat.getDrawable(context, R.drawable.bolt_round)
+    }
+
     override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
 
         val size = min(width, height).toFloat()
+
+        android.util.Log.d(
+            "DRAW",
+            "${this::class.java.simpleName} size=$size"
+        )
 
         drawCase(canvas, size)
         drawDial(canvas, size)
 
-        // обновляем овал для круговой шкалы (добавлено)
         setupOval(size)
 
         drawInstrument(canvas, size)
+
+        drawScrews(canvas, size)
     }
 
     private fun drawCase(canvas: Canvas, size: Float) {
@@ -58,8 +70,54 @@ abstract class BaseInstrumentView(
         )
     }
 
-    // метод, которого не хватало
+    private fun drawScrews(canvas: Canvas, size: Float) {
+
+        val boltSize = (size * 0.06f).toInt()
+        val offset = (size * 0.05f).toInt()
+
+        drawBolt(canvas, offset, offset, boltSize)
+
+        drawBolt(
+            canvas,
+            (size - offset - boltSize).toInt(),
+            offset,
+            boltSize
+        )
+
+        drawBolt(
+            canvas,
+            offset,
+            (size - offset - boltSize).toInt(),
+            boltSize
+        )
+
+        drawBolt(
+            canvas,
+            (size - offset - boltSize).toInt(),
+            (size - offset - boltSize).toInt(),
+            boltSize
+        )
+    }
+
+    private fun drawBolt(
+        canvas: Canvas,
+        x: Int,
+        y: Int,
+        size: Int
+    ) {
+
+        boltDrawable?.setBounds(
+            x,
+            y,
+            x + size,
+            y + size
+        )
+
+        boltDrawable?.draw(canvas)
+    }
+
     protected fun setupOval(size: Float) {
+
         val radius = size * 0.42f
         val cx = size / 2
         val cy = size / 2

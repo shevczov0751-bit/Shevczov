@@ -13,7 +13,10 @@ class AirspeedView(context: Context, attrs: AttributeSet?) :
     var speed = 0f
 
     override fun drawInstrument(canvas: Canvas, size: Float) {
-
+        android.util.Log.d(
+            "AIRSPEED",
+            "speed=$speed"
+        )
         val center = size / 2
         val radius = size * 0.45f
 

@@ -42,7 +42,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     implementation("androidx.viewpager2:viewpager2:1.1.0")
-
+        implementation("com.google.android.gms:play-services-maps:19.0.0")
+        implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("com.yandex.android:maps.mobile:4.5.0-full")
 
 }
