@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 <com.yandex.mapkit.mapview.MapView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mapview"
+    android:id="@+id/map_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+    <EditText
+        android:id="@+id/Esearch"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:minHeight="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:hint="  Поиск"
+        android:singleLine="true"
+        android:background="@drawable/poisk"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <ImageButton
+        android:id="@+id/ruler_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_edit"
+        android:background="@android:drawable/btn_default"
+        android:contentDescription="Маршрут"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
