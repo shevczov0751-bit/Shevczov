@@ -54,7 +54,6 @@ import android.view.GestureDetector
 
 
 
-
 class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.SearchListener {
 
     private lateinit var rulerButton: ImageButton
@@ -111,34 +110,8 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             false
 
         }
-        // Кнопка линейки
-        rulerButton = findViewById(R.id.ruler_button)
-        rulerButton.setOnClickListener { toggleRulerMode() }
 
 
-        gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onSingleTapUp(e: MotionEvent): Boolean {
-                if (rulerMode) {
-                    val point = mapView.mapWindow.screenToWorld(
-                        ScreenPoint(e.x.toFloat(), e.y.toFloat())
-                    )
-                    point?.let { handleMapClick(it) }
-                    return true
-                }
-                return false
-            }
-        })
-
-
-
-
-        // Обработка кликов по карте через onTouch
-        @Suppress("ClickableViewAccessibility")
-        mapView.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
-            false // не блокируем обработку, чтобы карта продолжала работать
-        }
-        
     }
 
 
