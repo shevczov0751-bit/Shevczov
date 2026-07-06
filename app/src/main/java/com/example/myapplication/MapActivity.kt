@@ -101,6 +101,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
         requestLocationPermission()
         var locationonmapkit = mapKit.createUserLocationLayer(mapView.mapWindow)
         locationonmapkit.isVisible = true
+        locationonmapkit.setObjectListener(this)
         searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED)
         searchEdit = findViewById(R.id.Esearch)
         searchEdit.setOnEditorActionListener { v, actionId, event ->
@@ -112,6 +113,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
         }
         rulerButton = findViewById(R.id.ruler_button)
         rulerButton.setOnClickListener { toggleRulerMode() }
+
 
         // Слушатель длительного нажатия от MapKit
         //mapView.map.addLongTapListener(object : com.yandex.mapkit.map.Map.OnMapLongTapListener {
@@ -167,25 +169,12 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
 
 
     override fun onObjectAdded(userLocationView: UserLocationView) {
-        locationmapkit.setAnchor(
-            PointF((mapView.width * 0.5).toFloat(), (mapView.height * 0.5).toFloat()),
-            PointF((mapView.width * 0.83).toFloat(), (mapView.height * 0.83).toFloat())
+        // Минимальная настройка - только смена иконки
+        userLocationView.pin.setIcon(
+            ImageProvider.fromResource(this, R.drawable.samolet)
         )
-        userLocationView.arrow.setIcon(ImageProvider.fromResource(this, R.drawable.samolet))
-        val picIcon = userLocationView.pin.useCompositeIcon()
-        picIcon.setIcon(
-            "icon", ImageProvider.fromResource(this, R.drawable.metkawf), IconStyle().setAnchor(
-                PointF(0f, 0f)
-            )
-                .setRotationType(RotationType.ROTATE).setZIndex(0f).setScale(1f)
-        )
-        picIcon.setIcon(
-            "pin", ImageProvider.fromResource(this, R.drawable.metkawf),
-            IconStyle().setAnchor(PointF(0.5f, 0.5f)).setRotationType(RotationType.ROTATE)
-                .setZIndex(1f).setScale(0.5f)
-        )
-        userLocationView.accuracyCircle.fillColor = Color.argb(0x66, 0, 0, 255)
     }
+
 
     override fun onObjectRemoved(p0: UserLocationView) {
 
@@ -200,7 +189,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
 
     override fun onSearchResponse(response: Response) {
         val mapObjects = mapView.map.mapObjects
-        mapObjects.clear() // если используете общую коллекцию, лучше заменить на отдельную
+        //mapObjects.clear()  если используете общую коллекцию, лучше заменить на отдельную
 
         response.collection.children.forEach { searchResult ->
             searchResult.obj
@@ -235,7 +224,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             firstPoint = null
             secondPoint = null
             Toast.makeText(this, "Нажмите на карту для первой точки", Toast.LENGTH_SHORT).show()
-            rulerButton.setBackgroundColor(Color.GREEN) // визуальный индикатор
+            rulerButton.setBackgroundColor(Color.YELLOW) // визуальный индикатор
         } else {
             // Выключаем режим
             clearRulerObjects()
@@ -265,7 +254,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             // Рисуем линию
             val polyline = Polyline(listOf(firstPoint!!, secondPoint!!))
             rulerPolyline = mapView.map.mapObjects.addPolyline(polyline).apply {
-               setStrokeColor(Color.BLUE)
+               setStrokeColor(Color.BLACK)
                strokeWidth = 5f
 
             }
