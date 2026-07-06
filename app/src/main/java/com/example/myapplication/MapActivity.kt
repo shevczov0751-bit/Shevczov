@@ -114,18 +114,14 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
         rulerButton = findViewById(R.id.ruler_button)
         rulerButton.setOnClickListener { toggleRulerMode() }
 
-
         // Слушатель длительного нажатия от MapKit
         //mapView.map.addLongTapListener(object : com.yandex.mapkit.map.Map.OnMapLongTapListener {
            // override fun onMapLongTap(point: Point) {
                // if (rulerMode) {
                  //   handleMapClick(point)
-
               //  }
           //  }
        // })
-
-
     }
 
 
