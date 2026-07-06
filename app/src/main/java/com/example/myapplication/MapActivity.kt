@@ -110,6 +110,18 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             false
 
         }
+        rulerButton = findViewById(R.id.ruler_button)
+        rulerButton.setOnClickListener { toggleRulerMode() }
+
+        // Слушатель длительного нажатия от MapKit
+        //mapView.map.addLongTapListener(object : com.yandex.mapkit.map.Map.OnMapLongTapListener {
+           // override fun onMapLongTap(point: Point) {
+               // if (rulerMode) {
+                 //   handleMapClick(point)
+
+              //  }
+          //  }
+       // })
 
 
     }
@@ -162,13 +174,13 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
         userLocationView.arrow.setIcon(ImageProvider.fromResource(this, R.drawable.samolet))
         val picIcon = userLocationView.pin.useCompositeIcon()
         picIcon.setIcon(
-            "icon", ImageProvider.fromResource(this, R.drawable.metka), IconStyle().setAnchor(
+            "icon", ImageProvider.fromResource(this, R.drawable.metkawf), IconStyle().setAnchor(
                 PointF(0f, 0f)
             )
                 .setRotationType(RotationType.ROTATE).setZIndex(0f).setScale(1f)
         )
         picIcon.setIcon(
-            "pin", ImageProvider.fromResource(this, R.drawable.metka),
+            "pin", ImageProvider.fromResource(this, R.drawable.metkawf),
             IconStyle().setAnchor(PointF(0.5f, 0.5f)).setRotationType(RotationType.ROTATE)
                 .setZIndex(1f).setScale(0.5f)
         )
@@ -196,7 +208,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
                 ?.firstOrNull()
                 ?.point
                 ?.let { point ->
-                    mapObjects.addPlacemark(point, ImageProvider.fromResource(this, R.drawable.metka))
+                    mapObjects.addPlacemark(point, ImageProvider.fromResource(this, R.drawable.metkawf))
                 }
         }
     }
@@ -237,7 +249,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             firstPoint = point
             val placemark = mapView.map.mapObjects.addPlacemark(
                 point,
-                ImageProvider.fromResource(this, R.drawable.metka) // можно использовать свою метку
+                ImageProvider.fromResource(this, R.drawable.trackwf) // можно использовать свою метку
             )
             rulerPlacemarks.add(placemark)
             Toast.makeText(this, "Первая точка выбрана", Toast.LENGTH_SHORT).show()
@@ -246,7 +258,7 @@ class MapActivity : AppCompatActivity(), UserLocationObjectListener, Session.Sea
             secondPoint = point
             val placemark = mapView.map.mapObjects.addPlacemark(
                 point,
-                ImageProvider.fromResource(this, R.drawable.metka)
+                ImageProvider.fromResource(this, R.drawable.trackwf)
             )
             rulerPlacemarks.add(placemark)
 
