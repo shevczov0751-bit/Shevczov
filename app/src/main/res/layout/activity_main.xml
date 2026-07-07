@@ -1,250 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/panelRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@drawable/panel_background"
+    android:padding="12dp"
+    android:weightSum="2">
 
+    <!-- ===== РЯД 1 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/panel_background"
-        android:padding="24dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
 
-        <!-- TOP ROW -->
-
+        <!-- AIRSPEED -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical">
 
-            <!-- AIRSPEED -->
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+                <com.example.myapplication.instruments.AirspeedView
+                    android:id="@+id/airspeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.AirspeedView
-                        android:id="@+id/airspeed"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="AIRSPEED"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
-            <!-- ATTITUDE -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.AttitudeView
-                        android:id="@+id/horizon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ATTITUDE"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
-            <!-- ALTIMETER -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.AltimeterView
-                        android:id="@+id/altimeter"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ALTIMETER"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
+                android:text="AIRSPEED"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
         </LinearLayout>
 
-        <!-- BOTTOM ROW -->
-
+        <!-- ATTITUDE -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical">
 
-            <!-- TURN -->
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+                <com.example.myapplication.instruments.AttitudeView
+                    android:id="@+id/horizon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.TurnCoordinatorView
-                        android:id="@+id/turn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TURN"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
-            <!-- HEADING -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.HeadingView
-                        android:id="@+id/heading"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HEADING"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
-            <!-- VERTICAL SPEED -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/instrument_bezel"
-                    android:padding="12dp">
-
-                    <com.example.myapplication.instruments.VerticalSpeedView
-                        android:id="@+id/vsi"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="VERTICAL SPEED"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="monospace"/>
-            </LinearLayout>
-
+                android:text="ATTITUDE"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
         </LinearLayout>
 
-        <!-- MAP BUTTON -->
+        <!-- ALTIMETER -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnMap"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="12dp"
-            android:text="OPEN MAP"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#222222"/>
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
+
+                <com.example.myapplication.instruments.AltimeterView
+                    android:id="@+id/altimeter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ALTIMETER"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
-</ScrollView>
+    <!-- ===== РЯД 2 ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
+
+        <!-- TURN -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
+
+                <com.example.myapplication.instruments.TurnCoordinatorView
+                    android:id="@+id/turnCoordinator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TURN"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+        <!-- HEADING -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
+
+                <com.example.myapplication.instruments.HeadingView
+                    android:id="@+id/heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HEADING"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+        <!-- VSI -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/instrument_bezel"
+                android:padding="8dp">
+
+                <com.example.myapplication.instruments.VerticalSpeedView
+                    android:id="@+id/vsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VSI"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="6dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

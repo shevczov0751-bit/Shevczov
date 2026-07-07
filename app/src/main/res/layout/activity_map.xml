@@ -6,29 +6,33 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-<com.yandex.mapkit.mapview.MapView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/map_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-    <ImageButton
-        android:id="@+id/ruler_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_menu_edit"
-        android:background="@android:drawable/btn_default"
-        android:contentDescription="Линейка"
+    tools:context=".MapActivity">
+
+    <!-- Узкая зона слева для свайпа назад (НЕ поверх карты) -->
+    <View
+        android:id="@+id/gesture_overlay"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/map_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gesture_overlay"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/Esearch"
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:minHeight="45dp"
         android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
@@ -37,8 +41,32 @@
         android:background="@drawable/poisk"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- КНОПКА ЛИНЕЙКИ: привязка к map_view (поэтому левее, чем к parent) -->
+    <ImageButton
+        android:id="@+id/ruler_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="18dp"
+        android:src="@android:drawable/ic_menu_edit"
+        android:background="@android:drawable/btn_default"
+        android:contentDescription="Линейка"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/map_view" />
+
+    <!-- МОЁ МЕСТОПОЛОЖЕНИЕ: тоже к map_view -->
+    <ImageButton
+        android:id="@+id/my_location_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="18dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        android:background="@android:drawable/btn_default"
+        android:contentDescription="Моё местоположение"
+        app:layout_constraintBottom_toTopOf="@id/ruler_button"
+        app:layout_constraintEnd_toEndOf="@id/map_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
