@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- внешняя мягкая подсветка -->
     <item>
         <shape android:shape="oval">
             <solid android:color="#000000"/>
@@ -10,8 +9,6 @@
                 android:color="#202020"/>
         </shape>
     </item>
-
-    <!-- основная толстая чёрная рамка -->
     <item
         android:left="8dp"
         android:top="8dp"
@@ -26,7 +23,5 @@
                 android:color="#333333"/>
 
         </shape>
-
     </item>
-
 </layer-list>

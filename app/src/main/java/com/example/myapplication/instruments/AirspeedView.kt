@@ -21,10 +21,8 @@ class AirspeedView(context: Context, attrs: AttributeSet?) :
         paint.strokeWidth = size * 0.01f
         paint.style = android.graphics.Paint.Style.STROKE
 
-        // круг прибора
         canvas.drawCircle(center, center, radius, paint)
 
-        // деления шкалы
         for (i in 0..240 step 20) {
 
             val angle = Math.toRadians((i * 270f / 240f - 135).toDouble())
@@ -44,7 +42,6 @@ class AirspeedView(context: Context, attrs: AttributeSet?) :
             )
         }
 
-        // цифры
         paint.style = android.graphics.Paint.Style.FILL
         paint.textSize = size * 0.06f
         paint.textAlign = android.graphics.Paint.Align.CENTER
@@ -64,7 +61,6 @@ class AirspeedView(context: Context, attrs: AttributeSet?) :
             )
         }
 
-        // стрелка
         val angle = -135f + speed * 270f / 240f
 
         canvas.save()

@@ -58,15 +58,14 @@ class MapActivity : AppCompatActivity(),
     private lateinit var searchEdit: EditText
     private lateinit var gestureOverlay: View
 
-    // Search
     private lateinit var searchManager: SearchManager
     private var searchSession: Session? = null
     private var searchCollection: MapObjectCollection? = null
 
-    // User location
+
     private lateinit var locationLayer: UserLocationLayer
 
-    // Ruler
+
     private var rulerMode = false
     private var firstPoint: Point? = null
     private var secondPoint: Point? = null
@@ -101,10 +100,8 @@ class MapActivity : AppCompatActivity(),
 
         requestLocationPermission()
 
-        // Коллекция под линейку
         rulerCollection = mapView.map.mapObjects.addCollection()
 
-        // Геолокация
         locationLayer = MapKitFactory.getInstance().createUserLocationLayer(mapView.mapWindow).apply {
             isVisible = true
             isHeadingEnabled = true
@@ -112,7 +109,6 @@ class MapActivity : AppCompatActivity(),
             setObjectListener(this@MapActivity)
         }
 
-        // Поиск
         searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED)
         searchEdit.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
@@ -125,7 +121,6 @@ class MapActivity : AppCompatActivity(),
         rulerButton.setOnClickListener { toggleRulerMode() }
         myLocationButton.setOnClickListener { moveToMyLocation() }
 
-        // Back (кнопка/системный)
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (rulerMode) {
@@ -138,13 +133,12 @@ class MapActivity : AppCompatActivity(),
             }
         })
 
-        // Свайп назад в левой полосе (вариант Б)
         setupLeftBackSwipe()
     }
 
     private fun setupLeftBackSwipe() {
-        val triggerDx = dpToPx(72) // сколько протянуть вправо, чтобы сработал back
-        val maxDy = dpToPx(48)     // допускаем небольшую вертикальную дрожь
+        val triggerDx = dpToPx(72)
+        val maxDy = dpToPx(48)
 
         gestureOverlay.isClickable = true
 
@@ -187,7 +181,6 @@ class MapActivity : AppCompatActivity(),
     private fun dpToPx(dp: Int): Float =
         dp * resources.displayMetrics.density
 
-    // ---------------- RULER ----------------
     private fun toggleRulerMode() {
         rulerMode = !rulerMode
         if (rulerMode) {
@@ -253,8 +246,6 @@ class MapActivity : AppCompatActivity(),
         rulerPolyline?.let { rulerCollection.remove(it) }
         rulerPolyline = null
     }
-
-    // ---------------- SEARCH ----------------
     private fun submitQuery(query: String) {
         val q = query.trim()
         if (q.isEmpty()) return
@@ -283,7 +274,6 @@ class MapActivity : AppCompatActivity(),
         Log.e("SEARCH", error.toString())
     }
 
-    // ---------------- MY LOCATION ----------------
     private fun moveToMyLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -301,15 +291,11 @@ class MapActivity : AppCompatActivity(),
             mapView.map.move(CameraPosition(Point(loc.latitude, loc.longitude), 16f, 0f, 0f))
         }
     }
-
-    // ---------------- KEYBOARD ----------------
     private fun hideKeyboardAndClearFocus() {
         currentFocus?.clearFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(mapView.windowToken, 0)
     }
-
-    // ---------------- PERMISSION ----------------
     private fun requestLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -321,10 +307,7 @@ class MapActivity : AppCompatActivity(),
             )
         }
     }
-
-    // ---------------- USER LOCATION LAYER ----------------
     override fun onObjectAdded(userLocationView: UserLocationView) {
-        // Если у тебя нет R.drawable.plane — замени на любой drawable
         userLocationView.arrow.setIcon(ImageProvider.fromResource(this, R.drawable.plane))
         userLocationView.arrow.setIconStyle(
             IconStyle().apply {
@@ -345,7 +328,6 @@ class MapActivity : AppCompatActivity(),
     override fun onObjectRemoved(view: UserLocationView) {}
     override fun onObjectUpdated(userLocationView: UserLocationView, event: ObjectEvent) {}
 
-    // ---------------- LIFECYCLE ----------------
     override fun onStart() {
         super.onStart()
         MapKitFactory.getInstance().onStart()

@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
     private val handler = Handler(Looper.getMainLooper())
 
-    // Настройки свайпа
     private val SWIPE_THRESHOLD = 120
     private val SWIPE_VELOCITY_THRESHOLD = 120f
 
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity() {
 
         sensorManager.listener = { pitch, roll, azimuth ->
 
-            // Калибровка
             if (!calibrated) {
                 pitchOffset = pitch
                 rollOffset = roll
@@ -80,25 +78,20 @@ class MainActivity : AppCompatActivity() {
             val correctedPitch = pitch - pitchOffset
             val correctedRoll = roll - rollOffset
 
-            // Авиагоризонт
             horizon.pitch = -correctedRoll
             horizon.roll = correctedPitch
 
-            // Курс
             heading.heading =
                 ((azimuth + 90f) % 360f + 360f) % 360f
 
-            // Координатор разворота
             turn.turnRate =
                 (-correctedPitch / 45f).coerceIn(-1f, 1f)
 
             turn.slip =
                 (correctedRoll / 45f).coerceIn(-1f, 1f)
 
-            // Вертикальная скорость
             vsi.verticalSpeed = correctedPitch * 2f
 
-            // Обновление приборов
             horizon.invalidate()
             heading.invalidate()
             turn.invalidate()
@@ -128,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                     val diffX = e2.x - e1.x
                     val diffY = e2.y - e1.y
 
-                    // Только горизонтальный свайп
+
                     if (abs(diffX) > abs(diffY)) {
 
                         if (
@@ -138,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
                             if (diffX < 0) {
 
-                                // Свайп влево → карта
+
                                 startActivity(
                                     Intent(
                                         this@MainActivity,
@@ -162,7 +155,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // Ловим touch поверх всех приборов
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
 
         gestureDetector.onTouchEvent(ev)
@@ -192,7 +184,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                // Высотомер
                 altimeter.altitude = fakeAltitude
                 altimeter.invalidate()
 

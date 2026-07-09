@@ -11,7 +11,6 @@ import kotlin.math.sin
 class HeadingView(context: Context, attrs: AttributeSet?) :
     BaseInstrumentView(context, attrs) {
 
-    // heading в градусах: 0–360
     var heading = 0f
 
     override fun drawInstrument(canvas: Canvas, size: Float) {
@@ -23,15 +22,12 @@ class HeadingView(context: Context, attrs: AttributeSet?) :
         paint.strokeWidth = size * 0.012f
         paint.style = android.graphics.Paint.Style.STROKE
 
-        // окружность шкалы
         canvas.drawCircle(center, center, radius, paint)
 
         canvas.save()
 
-        // вращаем ВСЮ шкалу
         canvas.rotate(-heading, center, center)
 
-        // риски круговой шкалы
         for (i in 0 until 360 step 5) {
 
             val angleRad = Math.toRadians(i.toDouble() - 90.0)
@@ -41,9 +37,9 @@ class HeadingView(context: Context, attrs: AttributeSet?) :
 
             val outer = radius
             val inner = if (i % 30 == 0) {
-                radius * 0.75   // длинные риски каждые 30°
+                radius * 0.75
             } else {
-                radius * 0.82   // короткие риски
+                radius * 0.82
             }
 
             val x1 = center + cosA * inner
@@ -54,7 +50,7 @@ class HeadingView(context: Context, attrs: AttributeSet?) :
 
             canvas.drawLine(x1.toFloat(), y1.toFloat(), x2.toFloat(), y2.toFloat(), paint)
 
-            // подписи 30°, 60°, 90° …
+
             if (i % 30 == 0) {
                 paint.textSize = size * 0.07f
                 paint.style = android.graphics.Paint.Style.FILL
@@ -71,24 +67,15 @@ class HeadingView(context: Context, attrs: AttributeSet?) :
             }
         }
 
-        //------------------ Compass letters -------------------
-
         paint.textSize = size * 0.12f
         paint.textAlign = android.graphics.Paint.Align.CENTER
         paint.style = android.graphics.Paint.Style.FILL
 
-        // Север N
         canvas.drawText("N", center, center - radius * 0.4f, paint)
-        // Восток E
         canvas.drawText("E", center + radius * 0.4f, center + size * 0.04f, paint)
-        // Юг S
         canvas.drawText("S", center, center + radius * 0.45f, paint)
-        // Запад W
         canvas.drawText("W", center - radius * 0.4f, center + size * 0.04f, paint)
-
         canvas.restore()
-
-        //------------------ TRIANGLE HEADING MARKER -------------------
 
         paint.color = Color.YELLOW
         paint.style = android.graphics.Paint.Style.FILL

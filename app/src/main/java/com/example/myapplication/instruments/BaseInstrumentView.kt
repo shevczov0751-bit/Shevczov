@@ -14,7 +14,6 @@ abstract class BaseInstrumentView(
 
     protected val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    // Овал приборной шкалы (добавлено)
     protected val oval = RectF()
 
     override fun onDraw(canvas: Canvas) {
@@ -23,10 +22,7 @@ abstract class BaseInstrumentView(
 
         drawCase(canvas, size)
         drawDial(canvas, size)
-
-        // обновляем овал для круговой шкалы (добавлено)
         setupOval(size)
-
         drawInstrument(canvas, size)
     }
 
@@ -58,7 +54,6 @@ abstract class BaseInstrumentView(
         )
     }
 
-    // метод, которого не хватало
     protected fun setupOval(size: Float) {
         val radius = size * 0.42f
         val cx = size / 2

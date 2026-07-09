@@ -21,10 +21,8 @@ class AltimeterView(context: Context, attrs: AttributeSet?) :
         paint.strokeWidth = size * 0.01f
         paint.style = android.graphics.Paint.Style.STROKE
 
-        // внешний круг
         canvas.drawCircle(center, center, radius, paint)
 
-        // деления шкалы
         for (i in 0 until 360 step 10) {
 
             val angle = Math.toRadians((i - 90).toDouble())
@@ -47,8 +45,6 @@ class AltimeterView(context: Context, attrs: AttributeSet?) :
                 paint
             )
         }
-
-        // цифры 0‑9 (тысячи футов)
         paint.style = android.graphics.Paint.Style.FILL
         paint.textSize = size * 0.07f
         paint.textAlign = android.graphics.Paint.Align.CENTER
@@ -68,13 +64,10 @@ class AltimeterView(context: Context, attrs: AttributeSet?) :
             )
         }
 
-        // ===== стрелки =====
-
         val hundredsAngle = altitude % 1000 / 1000f * 360f
         val thousandsAngle = altitude % 10000 / 10000f * 360f
         val tenThousandsAngle = altitude / 100000f * 360f
 
-        // сотни футов (длинная)
         canvas.save()
         canvas.rotate(hundredsAngle, center, center)
 
@@ -90,7 +83,6 @@ class AltimeterView(context: Context, attrs: AttributeSet?) :
 
         canvas.restore()
 
-        // тысячи футов
         canvas.save()
         canvas.rotate(thousandsAngle, center, center)
 
@@ -105,8 +97,6 @@ class AltimeterView(context: Context, attrs: AttributeSet?) :
         )
 
         canvas.restore()
-
-        // десятки тысяч футов
         canvas.save()
         canvas.rotate(tenThousandsAngle, center, center)
 

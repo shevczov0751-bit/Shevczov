@@ -7,8 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapActivity">
-
-    <!-- Узкая зона слева для свайпа назад (НЕ поверх карты) -->
     <View
         android:id="@+id/gesture_overlay"
         android:layout_width="24dp"
@@ -42,8 +40,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- КНОПКА ЛИНЕЙКИ: привязка к map_view (поэтому левее, чем к parent) -->
     <ImageButton
         android:id="@+id/ruler_button"
         android:layout_width="48dp"
@@ -55,8 +51,6 @@
         android:contentDescription="Линейка"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/map_view" />
-
-    <!-- МОЁ МЕСТОПОЛОЖЕНИЕ: тоже к map_view -->
     <ImageButton
         android:id="@+id/my_location_button"
         android:layout_width="48dp"

@@ -18,8 +18,6 @@ class VerticalSpeedView @JvmOverloads constructor(
             field = value.coerceIn(-10f, 10f)
             invalidate()
         }
-
-    // отдельная кисть для текста
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         textAlign = Paint.Align.CENTER
@@ -31,7 +29,6 @@ class VerticalSpeedView @JvmOverloads constructor(
         drawNeedle(canvas, size)
     }
 
-    /** Шкала с рисками */
     private fun drawScale(canvas: Canvas, size: Float) {
         val cx = size / 2f
         val cy = size / 2f
@@ -56,39 +53,28 @@ class VerticalSpeedView @JvmOverloads constructor(
             canvas.drawLine(sx, sy, ex, ey, paint)
         }
     }
-
-    /** Подписи значений шкалы */
     private fun drawLabels(canvas: Canvas, size: Float) {
         val cx = size / 2f
         val cy = size / 2f
-        val radius = size * 0.46f    // чуть за рисками
+        val radius = size * 0.46f
 
         textPaint.textSize = size * 0.07f
 
-        // подписи только для чётных значений и не для 0
         for (i in -10..10 step 2) {
             if (i == 0) continue
 
             val angle = valueToAngle(i.toFloat())
-
-            // точка для текста
             val tx = cx + radius * cos(angle)
             val ty = cy + radius * sin(angle)
-
-            // немного сдвинем текст ближе к центру, чтобы не залезал на корпус
             val offset = size * 0.015f
             val txAdj = tx
             val tyAdj = ty + offset
 
             canvas.drawText(i.toString(), txAdj, tyAdj, textPaint)
         }
-
-        // опционально можно подписать единицы (например, "m/s" или "ft/min")
         textPaint.textSize = size * 0.06f
         canvas.drawText("m/s", cx, cy + radius * 0.7f, textPaint)
     }
-
-    /** Стрелка (белая) */
     private fun drawNeedle(canvas: Canvas, size: Float) {
         val cx = size / 2f
         val cy = size / 2f
@@ -105,14 +91,11 @@ class VerticalSpeedView @JvmOverloads constructor(
 
         canvas.drawLine(cx, cy, ex, ey, paint)
 
-        // центр
         paint.style = Paint.Style.FILL
         canvas.drawCircle(cx, cy, size * 0.02f, paint)
     }
-
-    /** Преобразование значения -10..10 в угол */
     private fun valueToAngle(value: Float): Float {
-        val maxAngle = 120f         // максимум отклонения
+        val maxAngle = 120f
         val angle = (value / 10f) * maxAngle
         return Math.toRadians(angle.toDouble()).toFloat()
     }
